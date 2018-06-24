@@ -40,125 +40,88 @@ The is two mode in my TwitSpit, `simulation mode` and `real Twitter mode`.
 
 # Message Splitter Algorithm
   ## My approach:
-  + Length of a message part = Length of indicator and whitespace + Length of text <= 50 (EX: "IndexPart/TotalPart" + " " +  text). But we actually don't know total part. So, I determined total part the following:
-  + The first: Estimate number of digits of total part: K = numberOfDigits(message.count / 50). And then we can calculate length of indicator and whitespace: IndicatorCharacterCount = numberOfDigits(indexPart) + 1 + K + 1 // 1 first is "/" character and 1 second is white space
-  + The Second: Try to split the message with K.
-  + The Third: If we can't split the message (Length of total part is greater than K), we increase K value by 1 (K = K + 1) and try split the message again. If we can't get split return nil, otherwise return list of message parts that is splitted
-  + Time complexity: O(N) with N is number of characters of the message
+  + My job is split a string into an array that each part not bigger than 50 characters (indicator included).
+  + My first idea is using regular expression to deal with this. I found over internet some regex string that serve for this algorithm like `(\b.{1,45}(\s|$))\s*/g`. It's pass the unit test with some first basic cases, for another cases, it's goes wrong when missing special characters in output, like `,` `.` `'`
+  + I try to understand the regex logic, try another, try fix, try a lot of way but seem like my knowledge about regex is not enougn, so I leaved it there.
+  + The second idea is using plain logic and deal with this from top to toe. So, here we go, the idea is split the string to parts that not greater than 45 characters, find the spacing character index that around position 45 (not over 45), and do a substring with founded index. Put it into a recursive util the subject smaller than 45. 
+  + The exception of this algorithm is if a word that bigger than 50 stand at middle of the input string, the output after recursive finish will contain at least one elements. So I handled this exception by count the character of output array and compare with the original input. Solved!.
+  
+  ## Go into the code:
+  
+  + first step is trim the input, we won't allow a troll message like empty or a massive of spacing, throw an exception if found something kind of.
   
   ```js
+    input = input.trim();
+    
+    if (input.isEmpty()) {
+        throw new TwitSplitException(R.string.add_new_twit_error_input_empty);
+    }
   
-    fileprivate func processMessage(_ message: String) -> TwitterResult {
-        
-        // Estimate number of digits of total part
-        var K = numberOfDigits(message.count / TwitterValue.maxTwitterCharacterCount)
-
-        // Try to split the message first with K
-        switch trySplitTheMessageWith(message, K) {
-        case .error:
-            // Try to split the message second with K is increased by 1
-            K += 1
-            _ = trySplitTheMessageWith(message, K)
-        case .excess:
-            return TwitterResult.error(Error.nonWhitespace().result)
-        case .success:
-            break
-        }
-        
-        // Return result
-        let messages = twitterParts.map { $0.build() }
-        return TwitterResult.success(messages)
-    }
-    
-    fileprivate func trySplitTheMessageWith(_ message: String, _ K: Int) -> ResultSplit {
-        
-        // Init variables
-        indexPart = 1
-        twitterParts = []
-        
-        // Number of characters of indicator and whitespace (EX: "1/1 ")
-        var indicatorCharacterCount = numberOfDigits(indexPart) + 1 + K + 1 // 1 first is "/" character and 1 second is white space
-
-        // Init indexBegin and indexEnd
-        var indexBegin = 0
-        var indexEnd = indexBegin + TwitterValue.maxTwitterCharacterCount - indicatorCharacterCount
-        
-        // indexBegin is first index of message that we need to split
-        // indexEnd is end index of message that we need to split
-        // For example the following message: "I can't believe Tweeter now supports chunking my messages, so I don't have to do it myself."
-        // The First: indexBegin = 0, indexEnd = indexBegin + 50 - Number of characters of indicator and whitespace ("1/K " = 4) = 46. And then we run from indexEnd to indexBegin to find white space index (indexWhiteSpace) and split the message between indexBegin and indexWhiteSpace
-        // The Second: indexBegin = indexWhiteSpace + 1, indexEnd = indexBegin + 50 - Number of characters of indicator and whitespace ("2/K "). The we slit the message like the first step.
-        // The Third: indexBegin = indexWhiteSpace + 1, indexEnd = indexBegin + 50 - Number of characters of indicator and whitespace ("3/K "). The we slit the message like the first step.
-        // And so on...
-        
-        while indexEnd < message.count {
-            
-            var indexWhiteSpace = 0
-            var isExcess = true
-            
-            // we run from indexEnd to indexBegin to find index of the whitespace
-            for index in stride(from: indexEnd, to: indexBegin, by: -1) {
-                if message[index] == " " {
-                    isExcess = false
-                    indexWhiteSpace = index
-                    break
-                }
-            }
-            
-            // Check the message is not excessed yet (less than or equal 50 characters) and split that message
-            if !isExcess {
-                // Split the message at between indexBegin and indexWhiteSpace
-                let messagePart = message[indexBegin..<indexWhiteSpace]
-
-                // Add message part is splitted to array
-                let twitterPart = TwitterPart(indexPart, messagePart)
-                twitterParts.append(twitterPart)
-                
-                // Increase indexPart by 1
-                indexPart += 1
-                
-                // Update indexBegin value
-                indexBegin = indexWhiteSpace + 1
-                
-                // Update indicatorCharacterCount value
-                indicatorCharacterCount = numberOfDigits(indexPart) + 1 + K + 1
-
-                // Update indexEnd value
-                indexEnd = indexBegin + TwitterValue.maxTwitterCharacterCount - indicatorCharacterCount
-            } else {
-                return ResultSplit.excess
-            }
-            
-            // Split the message error at the first time and we will split the message at the second time by increasing K by 1
-            if numberOfDigits(indexPart) > K {
-                return ResultSplit.error
-            }
-        }
-        
-        // Add last one
-        if indexBegin < message.count {
-            let messagePart = message[indexBegin..<message.count]
-            let twitterPart = TwitterPart(indexPart, messagePart)
-            twitterParts.append(twitterPart)
-        }
-        
-        // It's time to update total part
-        twitterParts.forEach { $0.updateTotalPart(indexPart) }
-        
-        return ResultSplit.success
-    }
-    
-    // Mark: - Get number of digits
-    fileprivate func numberOfDigits(_ n: Int) -> Int {
-        if(n == 0) {
-            return 0
-        } else {
-            return 1 + numberOfDigits(n / 10)
-        }
-    }
-    
   ```
   
+  + next, I need to return the array with one element that exactly the original input if it not bigger than 50
+  
+  ```js
+    List<String> output = new ArrayList<>();
+    if (input.length() <= 50) {
+        output.add(input);
+    }
+  ```
+  + Okie, the victim appear, let deal with it
+  + `subject` is the spacing charater
+  + `point` is 45, the limit, because we need to include indicator and one spacing character at the head of splitted string, so the limit is not 50 anymore.
+  + go to the first step, the end condition of recursive, if the part of subject string we're dealing is adapt limit
+  + if not, find the index near `point` limit, with `subject` and `input`
+  + if you can't find it, let's end the recursive, there is not thing to deal with
+  + if you find one, let's cut the string to that index, you got a part of output
+  + and so on, let the recursive does it's job.
+  
+  ```js
+    private void processInput(List<String> output, String input) {
+        if (input.length() <= point) {
+            totalSize += input.length();
+            output.add(input);
+            return;
+        }
+
+        int foundIndex = getIndexNearPoint(input, subject, point);
+
+        if (foundIndex == -1) {
+            return;
+        }
+
+        String candidate = input.substring(0, foundIndex);
+        totalSize += candidate.length();
+        output.add(candidate);
+
+        String nextInput = input.substring(foundIndex + 1);
+        processInput(output, nextInput);
+    }
+    
+    private int getIndexNearPoint(String input, String object, int point) {
+        int returnIndex = -1;
+
+        int index = input.indexOf(object);
+        while (index >= 0) {
+            if (index > point) {
+                return returnIndex;
+            }
+
+            returnIndex = index;
+            index = input.indexOf(object, index + 1);
+        }
+
+        return returnIndex;
+    }
+  ```
+  
+  + and after you got an array as output, just put it in validation method, add indicator.
+  + for more detail, please enter `AlgorithmUsingPlainLogic.java` located in `core/twitsplit`
+  + you can also check `AlgorithmUsingRegex.java`, it's for regex solution, not bad but fail in some special case of unit test.
+  
+  # Memory Optimization
+  I usually use LeakCanary to detect leak memory from android application. This app run without leak.
+
   # Special Thanks
   + lethanhtam1604: Thank you for your readme file. My one is based on it
   + https://github.com/tokbes/zalora-tweet-split: Thank you for your regex idea, that's the awesome way but my knowledge about regex is not enough to make it complete, there is some exception I found and I can't deal with it.
