@@ -127,5 +127,5 @@ The is two mode in my TwitSpit, `simulation mode` and `real Twitter mode`.
   I usually use LeakCanary to detect leak memory from android application. This app run without leak.
 
   # Special Thanks
-  + lethanhtam1604: Thank you for your readme file. My one is based on it
+  + https://github.com/lethanhtam1604/TwitSplit: Thank you for your readme file. My one is based on it
   + https://github.com/tokbes/zalora-tweet-split: Thank you for your regex idea, that's the awesome way but my knowledge about regex is not enough to make it complete, there is some exception I found and I can't deal with it.
