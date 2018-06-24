@@ -62,7 +62,7 @@ public class TwitterHelper {
                 }
             });
         }
-        
+
         executor.shutdown();
         try {
             executor.awaitTermination(1, TimeUnit.MINUTES);

@@ -14,7 +14,7 @@ public class TwitSplit {
     }
 
     public List<String> build() throws TwitSplitException {
-        TwitSplitAlgorithm twitSplitAlgorithm = new AlgorithmUsingPlantLogic();
+        TwitSplitAlgorithm twitSplitAlgorithm = new AlgorithmUsingPlainLogic();
         return twitSplitAlgorithm.SplitMessage(content);
     }
 }

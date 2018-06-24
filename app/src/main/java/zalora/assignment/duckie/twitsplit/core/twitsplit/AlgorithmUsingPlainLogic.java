@@ -5,8 +5,8 @@ import java.util.List;
 
 import zalora.assignment.duckie.twitsplit.R;
 
-public class AlgorithmUsingPlantLogic implements TwitSplitAlgorithm {
-    String object = " ";
+public class AlgorithmUsingPlainLogic implements TwitSplitAlgorithm {
+    String subject = " ";
     int point = 45;
     int totalSize;
 
@@ -45,7 +45,7 @@ public class AlgorithmUsingPlantLogic implements TwitSplitAlgorithm {
             return;
         }
 
-        int foundIndex = getIndexNearPoint(input, object, point);
+        int foundIndex = getIndexNearPoint(input, subject, point);
 
         if (foundIndex == -1) {
             return;
