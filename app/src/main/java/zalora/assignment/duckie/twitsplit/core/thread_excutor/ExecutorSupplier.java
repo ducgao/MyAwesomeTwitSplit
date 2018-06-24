@@ -9,58 +9,36 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class ExecutorSupplier {
-    public static final int NUMBER_OF_CORES = Runtime.getRuntime().availableProcessors();
+    private final ThreadPoolExecutor forBackgroundTasks;
 
-    private final ThreadPoolExecutor mForBackgroundTasks;
-    private final ThreadPoolExecutor mForLightWeightBackgroundTasks;
-    private final Executor mMainThreadExecutor;
-
-    private static ExecutorSupplier sInstance;
+    private static ExecutorSupplier instance;
 
     public static ExecutorSupplier getInstance() {
-        if (sInstance == null) {
+        if (instance == null) {
             synchronized (ExecutorSupplier.class) {
-                sInstance = new ExecutorSupplier();
+                instance = new ExecutorSupplier();
             }
         }
 
-        return sInstance;
+        return instance;
     }
 
     private ExecutorSupplier() {
         ThreadFactory backgroundPriorityThreadFactory = new
                 PriorityThreadFactory(Process.THREAD_PRIORITY_BACKGROUND);
 
-        mForBackgroundTasks = new ThreadPoolExecutor(
-                NUMBER_OF_CORES * 2,
-                NUMBER_OF_CORES * 2,
+        forBackgroundTasks = new ThreadPoolExecutor(
+                1,
+                1,
                 60L,
                 TimeUnit.SECONDS,
                 new LinkedBlockingQueue<Runnable>(),
                 backgroundPriorityThreadFactory
         );
 
-        mForLightWeightBackgroundTasks = new ThreadPoolExecutor(
-                NUMBER_OF_CORES * 2,
-                NUMBER_OF_CORES * 2,
-                60L,
-                TimeUnit.SECONDS,
-                new LinkedBlockingQueue<Runnable>(),
-                backgroundPriorityThreadFactory
-        );
-
-        mMainThreadExecutor = new MainThreadExecutor();
     }
 
     public ThreadPoolExecutor forBackgroundTasks() {
-        return mForBackgroundTasks;
-    }
-
-    public ThreadPoolExecutor forLightWeightBackgroundTasks() {
-        return mForLightWeightBackgroundTasks;
-    }
-
-    public Executor forMainThreadTasks() {
-        return mMainThreadExecutor;
+        return forBackgroundTasks;
     }
 }

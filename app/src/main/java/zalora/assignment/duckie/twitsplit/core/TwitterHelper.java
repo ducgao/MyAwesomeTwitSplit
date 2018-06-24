@@ -10,12 +10,14 @@ import com.twitter.sdk.android.core.models.User;
 import com.twitter.sdk.android.core.services.AccountService;
 import com.twitter.sdk.android.core.services.StatusesService;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
+import retrofit2.Response;
 import zalora.assignment.duckie.twitsplit.TwitSplitApplication;
 import zalora.assignment.duckie.twitsplit.core.interfaces.SimpleCallback;
 import zalora.assignment.duckie.twitsplit.core.thread_excutor.ExecutorSupplier;
@@ -46,19 +48,21 @@ public class TwitterHelper {
     }
 
     public static void sendMessages(List<String> messages, final SimpleCallback callback) {
-        final List<Long> twitsID = new ArrayList<>();
+        usingThreadPool(messages, callback);
+    }
 
+    private static void usingThreadPool(List<String> messages, final SimpleCallback callback) {
         final ThreadPoolExecutor executor = ExecutorSupplier.getInstance().forBackgroundTasks();
 
         for (final String message : messages) {
             executor.execute(new Runnable() {
                 @Override
                 public void run() {
-                    sendMessage(twitsID, message);
+                    sendMessageSync(message);
                 }
             });
         }
-
+        
         executor.shutdown();
         try {
             executor.awaitTermination(1, TimeUnit.MINUTES);
@@ -69,14 +73,31 @@ public class TwitterHelper {
         }
     }
 
-    private static void sendMessage(final List<Long> twitsID, String message) {
+    private static void sendMessageSync(String message) {
+        TwitterApiClient apiClient = TwitterCore.getInstance().getApiClient();
+        StatusesService statusesService = apiClient.getStatusesService();
+        final Call<Tweet> tweetCall = statusesService.update(message, null, null, null, null, null, null, null, null);
+
+        try {
+            /*
+             * Response<Tweet> tweetResponse = tweetCall.execute();
+             * I don't know what I need from this, so just call
+             */
+            tweetCall.execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+            //TODO: try to catch it and remove all posted tweets.
+        }
+    }
+
+    private static void sendMessageAsync(String message) {
         TwitterApiClient apiClient = TwitterCore.getInstance().getApiClient();
         StatusesService statusesService = apiClient.getStatusesService();
         final Call<Tweet> tweetCall = statusesService.update(message, null, null, null, null, null, null, null, null);
         tweetCall.enqueue(new Callback<Tweet>() {
             @Override
             public void success(Result<Tweet> result) {
-                twitsID.add(result.data.id);
+                //TODO: I don't know what I need from this
             }
 
             @Override
