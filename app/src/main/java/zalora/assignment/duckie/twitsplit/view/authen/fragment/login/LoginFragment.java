@@ -1,4 +1,4 @@
-package zalora.assignment.duckie.twitsplit.view.authen.fragment;
+package zalora.assignment.duckie.twitsplit.view.authen.fragment.login;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,18 +9,23 @@ import android.widget.Button;
 
 import zalora.assignment.duckie.twitsplit.R;
 import zalora.assignment.duckie.twitsplit.adapter.ViewPagerAdapter;
+import zalora.assignment.duckie.twitsplit.presenter.authen.fragment.login.LoginPresenterImplementation;
+import zalora.assignment.duckie.twitsplit.presenter.authen.fragment.login.LoginViewPresenter;
 import zalora.assignment.duckie.twitsplit.utility.NavigationDelegate;
 
-public class LoginFragment extends Fragment {
+public class LoginFragment extends Fragment implements LoginView {
 
     Button tryDemoButton;
+
     NavigationDelegate delegate;
+    LoginViewPresenter presenter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
         bindingControls(view);
+        initPresenter();
         configUI();
         configControlEvents();
 
@@ -31,6 +36,11 @@ public class LoginFragment extends Fragment {
         tryDemoButton = (Button) view.findViewById(R.id.btn_try_demo);
     }
 
+    private void initPresenter() {
+        presenter = new LoginPresenterImplementation(this);
+        presenter.setNavigationDelegate(this.delegate);
+    }
+
     private void configUI() {
         tryDemoButton.setTransformationMethod(null);
     }
@@ -39,9 +49,7 @@ public class LoginFragment extends Fragment {
         tryDemoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (delegate != null) {
-                    delegate.moveToPageIndex(ViewPagerAdapter.DEMON_PAGE_INDEX);
-                }
+                presenter.moveToDemoPage();
             }
         });
     }

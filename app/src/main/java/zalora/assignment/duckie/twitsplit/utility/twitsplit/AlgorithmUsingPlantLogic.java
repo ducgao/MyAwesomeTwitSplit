@@ -3,6 +3,8 @@ package zalora.assignment.duckie.twitsplit.utility.twitsplit;
 import java.util.ArrayList;
 import java.util.List;
 
+import zalora.assignment.duckie.twitsplit.R;
+
 public class AlgorithmUsingPlantLogic implements TwitSplitAlgorithm {
     String object = " ";
     int point = 45;
@@ -12,6 +14,11 @@ public class AlgorithmUsingPlantLogic implements TwitSplitAlgorithm {
     @Override
     public List<String> SplitMessage(String input) throws TwitSplitException {
         input = input.trim();
+
+        if (input.isEmpty()) {
+            throw new TwitSplitException(R.string.add_new_twit_error_input_empty);
+        }
+
         List<String> output = new ArrayList<>();
         if (input.length() <= 50) {
             output.add(input);
@@ -22,7 +29,7 @@ public class AlgorithmUsingPlantLogic implements TwitSplitAlgorithm {
             processInput(output, input);
 
             if (missAnyPart(totalSize, input)) {
-                throw new TwitSplitException();
+                throw new TwitSplitException(R.string.add_new_twit_error_input_invalid);
             }
 
             addIndicator(output);

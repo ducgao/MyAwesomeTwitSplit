@@ -8,6 +8,8 @@
     <string name="add_new_twit_hint">Twit content</string>
     <string name="add_new_twit_post_button">Post</string>
     <string name="add_new_twit_cancel_button">Cancel</string>
+    <string name="add_new_twit_error_input_empty">Your message can not be empty</string>
+    <string name="add_new_twit_error_input_invalid">Your message contain a non-spacing word that greater than 50 characters</string>
 
     <string name="auth_try_demonstration_button">Try our demonstration without Twitter account</string>
     <string name="auth_demonstration_message">In this mode, you will got a full experience but everything is just simulation. You won\'t able to affect to any twitter account.\nAre you ready for it?</string>

@@ -2,6 +2,7 @@ package zalora.assignment.duckie.twitsplit.custom;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.util.AttributeSet;
 import android.view.View;
@@ -15,7 +16,7 @@ public class BeautyTextInput extends TextInputLayout {
 
     View rootView;
     TextInputLayout editTextWrapper;
-    EditText editText;
+    TextInputEditText editText;
 
     public BeautyTextInput(Context context) {
         super(context);
@@ -64,5 +65,14 @@ public class BeautyTextInput extends TextInputLayout {
 
     public String getContent() {
         return editText.getText().toString();
+    }
+
+    public void setError(String error) {
+        this.editTextWrapper.setError(error);
+    }
+
+    public void setError(int error) {
+        String errorString = context.getString(error);
+        setError(errorString);
     }
 }

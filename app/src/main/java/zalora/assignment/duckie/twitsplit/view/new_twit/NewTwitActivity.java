@@ -56,6 +56,11 @@ public class NewTwitActivity extends BaseActivity implements NewTwitView {
 
     @Override
     public void closeInstance() {
-        finish();
+        this.finish();
+    }
+
+    @Override
+    public void showInputError(int error) {
+        this.twitContent.setError(error);
     }
 }

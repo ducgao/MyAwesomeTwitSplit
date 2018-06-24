@@ -23,7 +23,7 @@ public class NewTwitModelImplementation implements NewTwitModel {
             repositoryHelper.addMessages(newMessages);
             this.presenter.postMessageSuccess();
         } catch (TwitSplitException e) {
-            this.presenter.postMessageError();
+            this.presenter.postMessageError(e.getMessageID());
         }
     }
 }

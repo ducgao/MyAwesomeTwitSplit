@@ -22,7 +22,7 @@ public class TwitHubModelImplementation implements TwitHubModel {
 
     @Override
     public void loadTwits() {
-        this.twits = Realm.getDefaultInstance().where(Twit.class).findAll().sort("postDate", Sort.DESCENDING);
+        this.twits = Realm.getDefaultInstance().where(Twit.class).findAll().sort("id", Sort.DESCENDING);
         this.presenter.loadTwitsCompleted(twits);
     }
 }

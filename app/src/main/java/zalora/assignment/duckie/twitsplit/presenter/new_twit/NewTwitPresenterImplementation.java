@@ -22,8 +22,8 @@ public class NewTwitPresenterImplementation implements NewTwitViewPresenter, New
     }
 
     @Override
-    public void postMessageError() {
-//TODO
+    public void postMessageError(int error) {
+        this.view.showInputError(error);
     }
 
     @Override

@@ -2,6 +2,7 @@ package zalora.assignment.duckie.twitsplit.repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import io.realm.Realm;
 import zalora.assignment.duckie.twitsplit.entity.Twit;
@@ -13,10 +14,15 @@ public class RealmHelperImplementation implements RepositoryHelper {
     @Override
     public void addMessages(List<String> messages) {
         List<Twit> twits = new ArrayList<>();
-        for (String message: messages) {
+
+        Number currentMaxID = realm.where(Twit.class).max("id");
+        int twitsSize = messages.size();
+
+        for (int i = 0; i < twitsSize; i++ ) {
             Twit twit = new Twit();
+            twit.id = currentMaxID.longValue() + i + 1;
             twit.postDate = System.currentTimeMillis();
-            twit.content = message;
+            twit.content = messages.get(i);
             twit.name = User.getFakeUser().name;
             twit.tagName = User.getFakeUser().tagName;
 

@@ -5,8 +5,9 @@ import io.realm.annotations.PrimaryKey;
 
 public class Twit extends RealmObject {
     @PrimaryKey
-    public long postDate;
+    public long id;
 
+    public long postDate;
     public String content;
     public String name;
     public String tagName;

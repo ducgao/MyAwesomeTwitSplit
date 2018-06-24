@@ -1,4 +1,4 @@
-package zalora.assignment.duckie.twitsplit.view.authen.fragment;
+package zalora.assignment.duckie.twitsplit.view.authen.fragment.demo;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +17,10 @@ import zalora.assignment.duckie.twitsplit.entity.Twit;
 import zalora.assignment.duckie.twitsplit.utility.NavigationDelegate;
 import zalora.assignment.duckie.twitsplit.view.twit_hub.TwitHubActivity;
 
+/*
+ * This class is quite simple so I don't need to apply MVP model to this
+ * This just a fragment with one behavior: swipe up to open twit hub.
+ */
 public class DemoConfirmFragment extends Fragment implements View.OnTouchListener {
 
     Button backButton, continueButton;
@@ -65,6 +69,7 @@ public class DemoConfirmFragment extends Fragment implements View.OnTouchListene
 
     private void prepareForDemonstrationSection() {
         Twit twit = new Twit();
+        twit.id = 0;
         twit.name = "Nguyen Van Duc";
         twit.tagName = "@DucGao4213";
         twit.postDate = 1529731480251l;
