@@ -13,9 +13,9 @@
         android:id="@+id/bedt_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="@dimen/content_margin_to_top"
+        android:layout_marginStart="@dimen/content_margin_to_side"
+        android:layout_marginEnd="@dimen/content_margin_to_side"
         app:hint="@string/add_new_twit_hint"
         />
 
@@ -39,7 +39,7 @@
             android:id="@+id/btn_post"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="@dimen/content_margin_to_side"
             android:layout_gravity="end"
             android:text="@string/add_new_twit_post_button"
             android:backgroundTint="@android:color/transparent"

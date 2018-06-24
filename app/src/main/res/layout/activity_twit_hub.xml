@@ -20,6 +20,6 @@
         android:layout_gravity="end|bottom"
         app:backgroundTint="@color/colorPrimary"
         android:src="@drawable/twitter"
-        android:layout_margin="16dp" />
+        android:layout_margin="@dimen/floating_action_margin" />
 
 </android.support.design.widget.CoordinatorLayout>
