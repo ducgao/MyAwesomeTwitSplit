@@ -11,8 +11,8 @@ import java.util.List;
 import zalora.assignment.duckie.twitsplit.R;
 import zalora.assignment.duckie.twitsplit.adapter.TwitHubAdapter;
 import zalora.assignment.duckie.twitsplit.entity.Twit;
-import zalora.assignment.duckie.twitsplit.mvp.model.twit_hub.TwitHubModelImplementation;
 import zalora.assignment.duckie.twitsplit.mvp.model.twit_hub.TwitHubModel;
+import zalora.assignment.duckie.twitsplit.mvp.model.twit_hub.TwitHubModelImplementation;
 import zalora.assignment.duckie.twitsplit.mvp.view.twit_hub.TwitHubView;
 
 public class TwitHubPresenterImplementation implements TwitHubViewPresenter, TwitHubModelPresenter {

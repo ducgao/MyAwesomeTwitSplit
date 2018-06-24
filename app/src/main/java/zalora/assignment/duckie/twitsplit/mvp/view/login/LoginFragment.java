@@ -12,11 +12,11 @@ import android.widget.Button;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 import zalora.assignment.duckie.twitsplit.R;
+import zalora.assignment.duckie.twitsplit.core.interfaces.NavigationDelegate;
 import zalora.assignment.duckie.twitsplit.mvp.presenter.login.LoginPresenterImplementation;
 import zalora.assignment.duckie.twitsplit.mvp.presenter.login.LoginViewPresenter;
-import zalora.assignment.duckie.twitsplit.utility.Utils;
-import zalora.assignment.duckie.twitsplit.core.interfaces.NavigationDelegate;
 import zalora.assignment.duckie.twitsplit.mvp.view.twit_hub.TwitHubActivity;
+import zalora.assignment.duckie.twitsplit.utility.Utils;
 
 public class LoginFragment extends Fragment implements LoginView {
 

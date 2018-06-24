@@ -6,7 +6,6 @@ import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.EditText;
 
 import zalora.assignment.duckie.twitsplit.R;
 

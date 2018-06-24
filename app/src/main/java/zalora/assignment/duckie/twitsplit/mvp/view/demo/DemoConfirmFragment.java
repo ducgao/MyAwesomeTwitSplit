@@ -13,8 +13,8 @@ import android.widget.Button;
 import io.realm.Realm;
 import zalora.assignment.duckie.twitsplit.R;
 import zalora.assignment.duckie.twitsplit.adapter.ViewPagerAdapter;
-import zalora.assignment.duckie.twitsplit.entity.Twit;
 import zalora.assignment.duckie.twitsplit.core.interfaces.NavigationDelegate;
+import zalora.assignment.duckie.twitsplit.entity.Twit;
 import zalora.assignment.duckie.twitsplit.mvp.view.twit_hub.TwitHubActivity;
 
 /*

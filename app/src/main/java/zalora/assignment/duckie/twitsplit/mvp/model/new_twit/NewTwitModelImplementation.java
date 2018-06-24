@@ -5,11 +5,11 @@ import java.util.List;
 import zalora.assignment.duckie.twitsplit.TwitSplitApplication;
 import zalora.assignment.duckie.twitsplit.core.TwitterHelper;
 import zalora.assignment.duckie.twitsplit.core.interfaces.SimpleCallback;
-import zalora.assignment.duckie.twitsplit.mvp.presenter.new_twit.NewTwitModelPresenter;
 import zalora.assignment.duckie.twitsplit.core.repository.RealmHelperImplementation;
 import zalora.assignment.duckie.twitsplit.core.repository.RepositoryHelper;
 import zalora.assignment.duckie.twitsplit.core.twitsplit.TwitSplit;
 import zalora.assignment.duckie.twitsplit.core.twitsplit.TwitSplitException;
+import zalora.assignment.duckie.twitsplit.mvp.presenter.new_twit.NewTwitModelPresenter;
 
 public class NewTwitModelImplementation implements NewTwitModel {
     NewTwitModelPresenter presenter;

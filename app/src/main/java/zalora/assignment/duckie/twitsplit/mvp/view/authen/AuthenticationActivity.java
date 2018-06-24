@@ -1,17 +1,17 @@
 package zalora.assignment.duckie.twitsplit.mvp.view.authen;
 
 import android.content.Intent;
-import android.support.v4.view.ViewPager;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 
 import java.util.List;
 
 import zalora.assignment.duckie.twitsplit.R;
 import zalora.assignment.duckie.twitsplit.mvp.presenter.authen.AuthenticationPresenterImplementation;
 import zalora.assignment.duckie.twitsplit.mvp.presenter.authen.AuthenticationViewPresenter;
-import zalora.assignment.duckie.twitsplit.utility.BaseActivity;
 import zalora.assignment.duckie.twitsplit.mvp.view.login.LoginFragment;
+import zalora.assignment.duckie.twitsplit.utility.BaseActivity;
 
 public class AuthenticationActivity extends BaseActivity implements AuthenticationView {
 

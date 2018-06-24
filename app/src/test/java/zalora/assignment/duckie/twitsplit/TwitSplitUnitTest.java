@@ -8,7 +8,8 @@ import java.util.List;
 import zalora.assignment.duckie.twitsplit.core.twitsplit.TwitSplit;
 import zalora.assignment.duckie.twitsplit.core.twitsplit.TwitSplitException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 public class TwitSplitUnitTest {
 

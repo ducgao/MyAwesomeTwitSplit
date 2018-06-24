@@ -10,6 +10,7 @@ import com.twitter.sdk.android.core.models.User;
 import com.twitter.sdk.android.core.services.AccountService;
 import com.twitter.sdk.android.core.services.StatusesService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -45,13 +46,15 @@ public class TwitterHelper {
     }
 
     public static void sendMessages(List<String> messages, final SimpleCallback callback) {
-        ThreadPoolExecutor executor = ExecutorSupplier.getInstance().forBackgroundTasks();
+        final List<Long> twitsID = new ArrayList<>();
+
+        final ThreadPoolExecutor executor = ExecutorSupplier.getInstance().forBackgroundTasks();
 
         for (final String message : messages) {
             executor.execute(new Runnable() {
                 @Override
                 public void run() {
-                    sendMessage(message, null);
+                    sendMessage(twitsID, message);
                 }
             });
         }
@@ -66,23 +69,19 @@ public class TwitterHelper {
         }
     }
 
-    private static void sendMessage(String message, final SimpleCallback callback) {
+    private static void sendMessage(final List<Long> twitsID, String message) {
         TwitterApiClient apiClient = TwitterCore.getInstance().getApiClient();
         StatusesService statusesService = apiClient.getStatusesService();
         final Call<Tweet> tweetCall = statusesService.update(message, null, null, null, null, null, null, null, null);
         tweetCall.enqueue(new Callback<Tweet>() {
             @Override
             public void success(Result<Tweet> result) {
-                if (callback != null) {
-                    callback.onSuccess();
-                }
+                twitsID.add(result.data.id);
             }
 
             @Override
             public void failure(TwitterException exception) {
-                if (callback != null) {
-                    callback.onFail();
-                }
+                //TODO: try to catch it and remove all posted tweets.
             }
         });
     }

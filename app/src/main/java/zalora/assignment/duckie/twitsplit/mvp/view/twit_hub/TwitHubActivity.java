@@ -12,9 +12,9 @@ import android.view.View;
 import zalora.assignment.duckie.twitsplit.R;
 import zalora.assignment.duckie.twitsplit.mvp.presenter.twit_hub.TwitHubPresenterImplementation;
 import zalora.assignment.duckie.twitsplit.mvp.presenter.twit_hub.TwitHubViewPresenter;
-import zalora.assignment.duckie.twitsplit.utility.BaseActivity;
 import zalora.assignment.duckie.twitsplit.mvp.view.authen.AuthenticationActivity;
 import zalora.assignment.duckie.twitsplit.mvp.view.new_twit.NewTwitActivity;
+import zalora.assignment.duckie.twitsplit.utility.BaseActivity;
 
 public class TwitHubActivity extends BaseActivity implements TwitHubView {
 

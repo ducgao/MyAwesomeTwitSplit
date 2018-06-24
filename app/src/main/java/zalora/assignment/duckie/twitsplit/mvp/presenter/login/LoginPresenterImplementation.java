@@ -7,9 +7,9 @@ import com.twitter.sdk.android.core.TwitterSession;
 
 import zalora.assignment.duckie.twitsplit.R;
 import zalora.assignment.duckie.twitsplit.adapter.ViewPagerAdapter;
+import zalora.assignment.duckie.twitsplit.core.interfaces.NavigationDelegate;
 import zalora.assignment.duckie.twitsplit.mvp.model.login.LoginModel;
 import zalora.assignment.duckie.twitsplit.mvp.model.login.LoginModelImplementation;
-import zalora.assignment.duckie.twitsplit.core.interfaces.NavigationDelegate;
 import zalora.assignment.duckie.twitsplit.mvp.view.login.LoginView;
 
 public class LoginPresenterImplementation implements LoginViewPresenter, LoginModelPresenter {
