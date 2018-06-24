@@ -119,6 +119,10 @@ The is two mode in my TwitSpit, `simulation mode` and `real Twitter mode`.
   + for more detail, please enter `AlgorithmUsingPlainLogic.java` located in `core/twitsplit`
   + you can also check `AlgorithmUsingRegex.java`, it's for regex solution, not bad but fail in some special case of unit test.
   
+  # Thread Excutor
+  I'm using `ThreadPoolExecutor` for upload message feature. But I think the messages need to be send synchronize.
+  The `2/2` must be a latest post. Sometime `ThreadPoolExecutor` with multi thread will make the `2/2` post go down, So I set `maximum of core` in ThreadPool to `1` to resolve this problem.
+  
   # Memory Optimization
   I usually use LeakCanary to detect leak memory from android application. This app run without leak.
 
