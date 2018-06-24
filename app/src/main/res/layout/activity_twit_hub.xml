@@ -13,6 +13,8 @@
         app:layoutManager="android.support.v7.widget.GridLayoutManager"
         />
 
+    <include android:id="@+id/layout_empty_twit" layout="@layout/layout_twit_hub_empty"/>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_new_twit"
         android:layout_width="wrap_content"

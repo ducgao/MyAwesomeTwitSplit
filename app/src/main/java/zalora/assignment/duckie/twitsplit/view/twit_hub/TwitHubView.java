@@ -5,4 +5,7 @@ import android.view.View;
 public interface TwitHubView {
     View getMainView();
     void goToNewTwit();
+
+    void showEmptyTwit();
+    void hideEmptyTwit();
 }

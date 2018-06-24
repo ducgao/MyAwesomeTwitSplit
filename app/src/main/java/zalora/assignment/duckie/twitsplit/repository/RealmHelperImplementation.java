@@ -16,6 +16,8 @@ public class RealmHelperImplementation implements RepositoryHelper {
         List<Twit> twits = new ArrayList<>();
 
         Number currentMaxID = realm.where(Twit.class).max("id");
+        currentMaxID = currentMaxID == null ? 0 : currentMaxID;
+
         int twitsSize = messages.size();
 
         for (int i = 0; i < twitsSize; i++ ) {

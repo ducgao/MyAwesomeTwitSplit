@@ -18,6 +18,7 @@ public class TwitHubActivity extends BaseActivity implements TwitHubView {
 
     RecyclerView twitHubView;
     FloatingActionButton newPostButton;
+    View emptyTwitLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class TwitHubActivity extends BaseActivity implements TwitHubView {
     private void bindingComponents() {
         twitHubView = (RecyclerView) findViewById(R.id.rv_twit_hub);
         newPostButton = (FloatingActionButton) findViewById(R.id.fab_new_twit);
+        emptyTwitLayout = findViewById(R.id.layout_empty_twit);
     }
 
     private void configControlEvents() {
@@ -58,5 +60,15 @@ public class TwitHubActivity extends BaseActivity implements TwitHubView {
     @Override
     public void goToNewTwit() {
         moveTo(NewTwitActivity.class);
+    }
+
+    @Override
+    public void showEmptyTwit() {
+        emptyTwitLayout.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideEmptyTwit() {
+        emptyTwitLayout.setVisibility(View.GONE);
     }
 }

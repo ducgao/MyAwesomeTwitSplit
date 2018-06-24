@@ -45,6 +45,12 @@ public class TwitHubPresenterImplementation implements TwitHubViewPresenter, Twi
     @Override
     public void loadTwitsCompleted(List<Twit> twits) {
         this.adapter.setNewData(twits);
+        if (twits == null || twits.size() == 0) {
+            this.view.showEmptyTwit();
+        }
+        else {
+            this.view.hideEmptyTwit();
+        }
     }
 
     /*
