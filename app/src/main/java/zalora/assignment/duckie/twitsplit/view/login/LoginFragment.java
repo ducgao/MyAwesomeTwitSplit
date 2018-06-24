@@ -1,5 +1,6 @@
 package zalora.assignment.duckie.twitsplit.view.login;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 import zalora.assignment.duckie.twitsplit.R;
 import zalora.assignment.duckie.twitsplit.presenter.login.LoginPresenterImplementation;
 import zalora.assignment.duckie.twitsplit.presenter.login.LoginViewPresenter;
+import zalora.assignment.duckie.twitsplit.utility.Utils;
 import zalora.assignment.duckie.twitsplit.utility.interfaces.NavigationDelegate;
 import zalora.assignment.duckie.twitsplit.view.twit_hub.TwitHubActivity;
 
@@ -24,6 +26,8 @@ public class LoginFragment extends Fragment implements LoginView {
     NavigationDelegate delegate;
     LoginViewPresenter presenter;
 
+    ProgressDialog progressDialog;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
@@ -34,6 +38,16 @@ public class LoginFragment extends Fragment implements LoginView {
         configControlEvents();
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        if (progressDialog!= null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+            progressDialog = null;
+        }
     }
 
     private void bindingControls(View view) {
@@ -77,5 +91,30 @@ public class LoginFragment extends Fragment implements LoginView {
         Intent intent = new Intent(getContext(), TwitHubActivity.class);
         startActivity(intent);
         getActivity().finish();
+    }
+
+    @Override
+    public void showLoading() {
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(getContext());
+            progressDialog.setMessage(getString(R.string.dialog_processing_message));
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progressDialog.setIndeterminate(true);
+            progressDialog.setCancelable(false);
+        }
+
+        progressDialog.show();
+    }
+
+    @Override
+    public void hideLoading() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+    }
+
+    @Override
+    public void showError(int error) {
+        Utils.showErrorDialog(getContext(), error);
     }
 }

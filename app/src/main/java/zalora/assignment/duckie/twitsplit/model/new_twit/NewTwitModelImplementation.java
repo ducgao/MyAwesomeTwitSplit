@@ -2,6 +2,7 @@ package zalora.assignment.duckie.twitsplit.model.new_twit;
 
 import java.util.List;
 
+import zalora.assignment.duckie.twitsplit.TwitSplitApplication;
 import zalora.assignment.duckie.twitsplit.presenter.new_twit.NewTwitModelPresenter;
 import zalora.assignment.duckie.twitsplit.repository.RealmHelperImplementation;
 import zalora.assignment.duckie.twitsplit.repository.RepositoryHelper;
@@ -20,10 +21,19 @@ public class NewTwitModelImplementation implements NewTwitModel {
     public void postMessage(String content) {
         try {
             List<String> newMessages = TwitSplit.init(content).build();
-            repositoryHelper.addMessages(newMessages);
-            this.presenter.postMessageSuccess();
+            postMessages(newMessages);
         } catch (TwitSplitException e) {
             this.presenter.postMessageError(e.getMessageID());
+        }
+    }
+
+    private void postMessages(List<String> messages) {
+        if (TwitSplitApplication.isSimulation()) {
+            repositoryHelper.addMessages(messages);
+            this.presenter.postMessageSuccess();
+        }
+        else {
+            this.presenter.startUploadMessage();
         }
     }
 }

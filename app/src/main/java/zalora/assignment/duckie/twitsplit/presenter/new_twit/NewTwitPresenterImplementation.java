@@ -27,6 +27,11 @@ public class NewTwitPresenterImplementation implements NewTwitViewPresenter, New
     }
 
     @Override
+    public void startUploadMessage() {
+        this.view.showLoading();
+    }
+
+    @Override
     public void postMessageSuccess() {
         this.view.closeInstance();
     }

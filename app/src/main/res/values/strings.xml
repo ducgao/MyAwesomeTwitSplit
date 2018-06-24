@@ -4,6 +4,12 @@
     <string name="com.twitter.sdk.android.CONSUMER_KEY">qRvEm46du5uQFo2YeACAb8YwD</string>
     <string name="com.twitter.sdk.android.CONSUMER_SECRET">ubyhzSLlfZCZMY6QfTOpiRsYBUxFqfgDvLYF8YyAtYOFssNZD3</string>
 
+    <string name="button_error">Oops!</string>
+    <string name="button_ok">OK</string>
+
+    <string name="dialog_processing_message">We\'re working on it...</string>
+    <string name="dialog_twitter_token_error">We can\'t connect to twitter service, please check your internet connection and try again.</string>
+
     <string name="twit_hub_title">Your twits</string>
     <string name="twit_hub_logout">Logout</string>
     <string name="twit_hub_add_new_twit_confirm_message">Click Twitter button again to post a message</string>

@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.squareup.leakcanary.LeakCanary;
 import com.twitter.sdk.android.core.DefaultLogger;
 import com.twitter.sdk.android.core.Twitter;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
@@ -20,9 +21,16 @@ public class TwitSplitApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        initLeakCanary();
         initFresco();
         initRealm();
         initTwitter();
+    }
+
+    private void initLeakCanary() {
+        if (!LeakCanary.isInAnalyzerProcess(this)) {
+            LeakCanary.install(this);
+        }
     }
 
     private void initFresco() {
@@ -44,6 +52,10 @@ public class TwitSplitApplication extends Application {
                 .debug(true)
                 .build();
         Twitter.initialize(config);
+    }
+
+    public static boolean isSimulation() {
+        return user == null;
     }
 
     public static User getUser() {

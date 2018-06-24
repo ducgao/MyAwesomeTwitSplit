@@ -1,5 +1,11 @@
 package zalora.assignment.duckie.twitsplit.utility;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+
+import zalora.assignment.duckie.twitsplit.R;
+
 public class Utils {
     public static String getPresentDateFromMilliseconds(long millisecond) {
         long currentTime = System.currentTimeMillis();
@@ -21,5 +27,25 @@ public class Utils {
         }
 
         return "1m";
+    }
+
+    public static void showErrorDialog(final Context context, int message) {
+        String messageString = context.getString(message);
+        showErrorDialog(context, messageString);
+    }
+
+    public static void showErrorDialog(final Context context, String message) {
+        final AlertDialog dialog = new AlertDialog.Builder(context)
+                .setTitle(R.string.button_error)
+                .setMessage(message)
+                .setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                }).create();
+        if (!dialog.isShowing()) {
+            dialog.show();
+        }
     }
 }

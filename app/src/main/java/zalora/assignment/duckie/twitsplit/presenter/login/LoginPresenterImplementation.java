@@ -5,6 +5,7 @@ import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
 
+import zalora.assignment.duckie.twitsplit.R;
 import zalora.assignment.duckie.twitsplit.adapter.ViewPagerAdapter;
 import zalora.assignment.duckie.twitsplit.model.login.LoginModel;
 import zalora.assignment.duckie.twitsplit.model.login.LoginModelImplementation;
@@ -39,6 +40,7 @@ public class LoginPresenterImplementation implements LoginViewPresenter, LoginMo
     }
 
     private void handleOnLoginSuccess() {
+        view.showLoading();
         model.handleLoginSuccess();
     }
 
@@ -52,12 +54,19 @@ public class LoginPresenterImplementation implements LoginViewPresenter, LoginMo
 
         @Override
         public void failure(TwitterException exception) {
-            //TODO
+            view.hideLoading();
+            view.showError(R.string.dialog_twitter_token_error);
         }
     };
 
     @Override
     public void prepareDataCompleted() {
         view.moveToTwitHub();
+    }
+
+    @Override
+    public void prepareDataFail() {
+        view.hideLoading();
+        view.showError(R.string.dialog_twitter_token_error);
     }
 }

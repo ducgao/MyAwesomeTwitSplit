@@ -35,7 +35,7 @@ public class LoginModelImplementation implements LoginModel {
 
             @Override
             public void onFail() {
-                //TODO
+                presenter.prepareDataFail();
             }
         });
     }
