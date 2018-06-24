@@ -23,7 +23,7 @@ public class TwitterHelper {
                 zalora.assignment.duckie.twitsplit.entity.User user = new zalora.assignment.duckie.twitsplit.entity.User();
                 user.name = userResult.data.screenName;
                 user.tagName = "@" + userResult.data.name;
-                user.avatar = userResult.data.profileImageUrl;
+                user.avatar = userResult.data.profileImageUrl.replace("_normal", "");
 
                 TwitSplitApplication.setUser(user);
                 callback.onSuccess();

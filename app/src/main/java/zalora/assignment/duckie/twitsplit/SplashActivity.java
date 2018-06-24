@@ -32,7 +32,6 @@ public class SplashActivity extends BaseActivity {
         }
 
         handleLoggedUser();
-        moveToTwitHub();
     }
 
     private void moveToLogin() {
