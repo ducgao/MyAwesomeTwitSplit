@@ -42,4 +42,13 @@
         android:text="@string/auth_try_demonstration_button"
         android:textColor="@color/colorPrimary"
         />
+
+    <com.twitter.sdk.android.core.identity.TwitterLoginButton
+        android:layout_above="@id/btn_try_demo"
+        android:id="@+id/btn_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
+        />
 </RelativeLayout>

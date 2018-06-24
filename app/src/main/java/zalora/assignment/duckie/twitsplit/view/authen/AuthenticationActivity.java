@@ -1,12 +1,17 @@
 package zalora.assignment.duckie.twitsplit.view.authen;
 
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
+
+import java.util.List;
 
 import zalora.assignment.duckie.twitsplit.R;
 import zalora.assignment.duckie.twitsplit.presenter.authen.AuthenticationPresenterImplementation;
 import zalora.assignment.duckie.twitsplit.presenter.authen.AuthenticationViewPresenter;
 import zalora.assignment.duckie.twitsplit.utility.BaseActivity;
+import zalora.assignment.duckie.twitsplit.view.authen.fragment.login.LoginFragment;
 
 public class AuthenticationActivity extends BaseActivity implements AuthenticationView {
 
@@ -20,7 +25,6 @@ public class AuthenticationActivity extends BaseActivity implements Authenticati
 
         bindingComponents();
         initPresenter();
-        configControlEvents();
     }
 
     private void bindingComponents() {
@@ -32,7 +36,15 @@ public class AuthenticationActivity extends BaseActivity implements Authenticati
         presenter.integrateViewPager(viewPager, getSupportFragmentManager());
     }
 
-    private void configControlEvents() {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        List<Fragment> fragments = getSupportFragmentManager().getFragments();
+        for (Fragment fragment : fragments) {
+            if (fragment instanceof LoginFragment) {
+                fragment.onActivityResult(requestCode, resultCode, data);
+            }
+        }
     }
 }

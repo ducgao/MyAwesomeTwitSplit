@@ -61,7 +61,6 @@ public class TwitHubPresenterImplementation implements TwitHubViewPresenter, Twi
     }
 
     private void goToNewTwit() {
-        snackbar.dismiss();
         view.goToNewTwit();
     }
 
