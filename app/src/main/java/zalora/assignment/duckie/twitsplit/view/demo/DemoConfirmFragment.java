@@ -1,4 +1,4 @@
-package zalora.assignment.duckie.twitsplit.view.authen.fragment.demo;
+package zalora.assignment.duckie.twitsplit.view.demo;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -70,8 +70,6 @@ public class DemoConfirmFragment extends Fragment implements View.OnTouchListene
     private void prepareForDemonstrationSection() {
         Twit twit = new Twit();
         twit.id = 0;
-        twit.name = "Nguyen Van Duc";
-        twit.tagName = "@DucGao4213";
         twit.postDate = 1529731480251l;
         twit.content = "This is a demo twit content, make one by tap on twitter button.";
 

@@ -5,6 +5,9 @@ import android.view.View;
 
 public interface TwitHubViewPresenter {
     void loadTwits();
+    void logout();
+
     void integrateRecycleView(RecyclerView recycleView);
+
     View.OnClickListener getPostButtonClickHandler();
 }

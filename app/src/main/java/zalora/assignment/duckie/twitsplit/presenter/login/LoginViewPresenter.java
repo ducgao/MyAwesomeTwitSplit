@@ -1,4 +1,4 @@
-package zalora.assignment.duckie.twitsplit.presenter.authen.fragment.login;
+package zalora.assignment.duckie.twitsplit.presenter.login;
 
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.TwitterSession;

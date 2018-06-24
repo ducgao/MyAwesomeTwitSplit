@@ -4,12 +4,16 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import zalora.assignment.duckie.twitsplit.R;
 import zalora.assignment.duckie.twitsplit.presenter.twit_hub.TwitHubPresenterImplementation;
 import zalora.assignment.duckie.twitsplit.presenter.twit_hub.TwitHubViewPresenter;
 import zalora.assignment.duckie.twitsplit.utility.BaseActivity;
+import zalora.assignment.duckie.twitsplit.view.authen.AuthenticationActivity;
 import zalora.assignment.duckie.twitsplit.view.new_twit.NewTwitActivity;
 
 public class TwitHubActivity extends BaseActivity implements TwitHubView {
@@ -37,6 +41,26 @@ public class TwitHubActivity extends BaseActivity implements TwitHubView {
         presenter.loadTwits();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_twit_hub, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_logout:
+                presenter.logout();
+                break;
+            default:
+                break;
+        }
+
+        return true;
+    }
+
     private void bindingComponents() {
         twitHubView = (RecyclerView) findViewById(R.id.rv_twit_hub);
         newPostButton = (FloatingActionButton) findViewById(R.id.fab_new_twit);
@@ -60,6 +84,12 @@ public class TwitHubActivity extends BaseActivity implements TwitHubView {
     @Override
     public void goToNewTwit() {
         moveTo(NewTwitActivity.class);
+    }
+
+    @Override
+    public void goToAuthentication() {
+        moveTo(AuthenticationActivity.class);
+        finish();
     }
 
     @Override

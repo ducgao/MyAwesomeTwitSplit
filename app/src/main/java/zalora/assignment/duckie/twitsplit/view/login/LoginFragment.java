@@ -1,4 +1,4 @@
-package zalora.assignment.duckie.twitsplit.view.authen.fragment.login;
+package zalora.assignment.duckie.twitsplit.view.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,8 +11,8 @@ import android.widget.Button;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 import zalora.assignment.duckie.twitsplit.R;
-import zalora.assignment.duckie.twitsplit.presenter.authen.fragment.login.LoginPresenterImplementation;
-import zalora.assignment.duckie.twitsplit.presenter.authen.fragment.login.LoginViewPresenter;
+import zalora.assignment.duckie.twitsplit.presenter.login.LoginPresenterImplementation;
+import zalora.assignment.duckie.twitsplit.presenter.login.LoginViewPresenter;
 import zalora.assignment.duckie.twitsplit.utility.NavigationDelegate;
 import zalora.assignment.duckie.twitsplit.view.twit_hub.TwitHubActivity;
 

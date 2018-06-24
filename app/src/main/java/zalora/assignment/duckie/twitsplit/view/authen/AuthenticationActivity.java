@@ -11,7 +11,7 @@ import zalora.assignment.duckie.twitsplit.R;
 import zalora.assignment.duckie.twitsplit.presenter.authen.AuthenticationPresenterImplementation;
 import zalora.assignment.duckie.twitsplit.presenter.authen.AuthenticationViewPresenter;
 import zalora.assignment.duckie.twitsplit.utility.BaseActivity;
-import zalora.assignment.duckie.twitsplit.view.authen.fragment.login.LoginFragment;
+import zalora.assignment.duckie.twitsplit.view.login.LoginFragment;
 
 public class AuthenticationActivity extends BaseActivity implements AuthenticationView {
 

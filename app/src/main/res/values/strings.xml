@@ -5,6 +5,7 @@
     <string name="com.twitter.sdk.android.CONSUMER_SECRET">ubyhzSLlfZCZMY6QfTOpiRsYBUxFqfgDvLYF8YyAtYOFssNZD3</string>
 
     <string name="twit_hub_title">Your twits</string>
+    <string name="twit_hub_logout">Logout</string>
     <string name="twit_hub_add_new_twit_confirm_message">Click Twitter button again to post a message</string>
     <string name="twit_hub_empty">You have no tweet. Make one by tap on twitter button bellow!</string>
 

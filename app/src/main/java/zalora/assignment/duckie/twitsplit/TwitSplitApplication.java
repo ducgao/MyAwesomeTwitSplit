@@ -3,21 +3,30 @@ package zalora.assignment.duckie.twitsplit;
 import android.app.Application;
 import android.util.Log;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.twitter.sdk.android.core.DefaultLogger;
 import com.twitter.sdk.android.core.Twitter;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
 import com.twitter.sdk.android.core.TwitterConfig;
 
 import io.realm.Realm;
+import zalora.assignment.duckie.twitsplit.entity.User;
 
 public class TwitSplitApplication extends Application {
+
+    private static User user;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
+        initFresco();
         initRealm();
         initTwitter();
+    }
+
+    private void initFresco() {
+        Fresco.initialize(getApplicationContext());
     }
 
     private void initRealm() {
@@ -35,5 +44,14 @@ public class TwitSplitApplication extends Application {
                 .debug(true)
                 .build();
         Twitter.initialize(config);
+    }
+
+    public static User getUser() {
+        if (user == null) return User.getFakeUser();
+        return user;
+    }
+
+    public static void setUser(User user) {
+        TwitSplitApplication.user = user;
     }
 }

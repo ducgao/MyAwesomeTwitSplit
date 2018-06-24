@@ -9,9 +9,6 @@ public class Twit extends RealmObject {
 
     public long postDate;
     public String content;
-    public String name;
-    public String tagName;
-
 
     public Twit() {}
 }

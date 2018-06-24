@@ -4,6 +4,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.twitter.sdk.android.core.TwitterCore;
+
 import java.util.List;
 
 import zalora.assignment.duckie.twitsplit.R;
@@ -29,6 +31,12 @@ public class TwitHubPresenterImplementation implements TwitHubViewPresenter, Twi
     @Override
     public void loadTwits() {
         this.model.loadTwits();
+    }
+
+    @Override
+    public void logout() {
+        TwitterCore.getInstance().getSessionManager().clearActiveSession();
+        view.goToAuthentication();
     }
 
     @Override

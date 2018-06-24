@@ -10,6 +10,8 @@ import com.twitter.sdk.android.core.TwitterCore;
 import com.twitter.sdk.android.core.TwitterSession;
 
 import zalora.assignment.duckie.twitsplit.utility.BaseActivity;
+import zalora.assignment.duckie.twitsplit.utility.SimpleCallback;
+import zalora.assignment.duckie.twitsplit.utility.TwitterHelper;
 import zalora.assignment.duckie.twitsplit.view.authen.AuthenticationActivity;
 import zalora.assignment.duckie.twitsplit.view.twit_hub.TwitHubActivity;
 
@@ -29,6 +31,7 @@ public class SplashActivity extends BaseActivity {
             return;
         }
 
+        handleLoggedUser();
         moveToTwitHub();
     }
 
@@ -40,5 +43,19 @@ public class SplashActivity extends BaseActivity {
     private void moveToTwitHub() {
         moveTo(TwitHubActivity.class);
         finish();
+    }
+
+    private void handleLoggedUser() {
+        TwitterHelper.fillCurrentUserData(new SimpleCallback() {
+            @Override
+            public void onSuccess() {
+                moveToTwitHub();
+            }
+
+            @Override
+            public void onFail() {
+                moveToLogin();
+            }
+        });
     }
 }
