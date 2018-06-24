@@ -5,7 +5,7 @@ import java.util.List;
 
 import zalora.assignment.duckie.twitsplit.R;
 
-public class AlgorithmUsingPlantLogic implements TwitSplitAlgorithm {
+public class AlgorithmUsingPlainLogic implements TwitSplitAlgorithm {
     String object = " ";
     int point = 45;
     int totalSize;
