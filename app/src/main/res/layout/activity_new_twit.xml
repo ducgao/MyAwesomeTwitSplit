@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    >
+
+    <zalora.assignment.duckie.twitsplit.custom.BeautyTextInput
+        android:id="@+id/bedt_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/content_margin_to_top"
+        android:layout_marginStart="@dimen/content_margin_to_side"
+        android:layout_marginEnd="@dimen/content_margin_to_side"
+        app:hint="@string/add_new_twit_hint"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end"
+        >
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="@string/add_new_twit_cancel_button"
+            android:backgroundTint="@android:color/transparent"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/holo_red_light"
+            />
+        <Button
+            android:id="@+id/btn_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/content_margin_to_side"
+            android:layout_gravity="end"
+            android:text="@string/add_new_twit_post_button"
+            android:backgroundTint="@android:color/transparent"
+            android:background="@android:color/transparent"
+            android:textColor="@color/colorPrimary"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

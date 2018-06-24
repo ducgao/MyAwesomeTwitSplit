@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_twit_hub"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="android.support.v7.widget.GridLayoutManager"
+        />
+
+    <include android:id="@+id/layout_empty_twit" layout="@layout/layout_twit_hub_empty"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_new_twit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        app:backgroundTint="@color/colorPrimary"
+        android:src="@drawable/twitter"
+        android:layout_margin="@dimen/floating_action_margin" />
+
+</android.support.design.widget.CoordinatorLayout>
