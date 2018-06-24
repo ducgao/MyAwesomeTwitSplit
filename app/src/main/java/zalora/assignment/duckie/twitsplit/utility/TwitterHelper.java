@@ -10,6 +10,7 @@ import com.twitter.sdk.android.core.services.AccountService;
 
 import retrofit2.Call;
 import zalora.assignment.duckie.twitsplit.TwitSplitApplication;
+import zalora.assignment.duckie.twitsplit.utility.interfaces.SimpleCallback;
 
 public class TwitterHelper {
     public static void fillCurrentUserData(final SimpleCallback callback) {

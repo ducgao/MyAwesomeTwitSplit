@@ -5,11 +5,10 @@ import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
 
-import io.realm.Realm;
 import zalora.assignment.duckie.twitsplit.adapter.ViewPagerAdapter;
 import zalora.assignment.duckie.twitsplit.model.login.LoginModel;
 import zalora.assignment.duckie.twitsplit.model.login.LoginModelImplementation;
-import zalora.assignment.duckie.twitsplit.utility.NavigationDelegate;
+import zalora.assignment.duckie.twitsplit.utility.interfaces.NavigationDelegate;
 import zalora.assignment.duckie.twitsplit.view.login.LoginView;
 
 public class LoginPresenterImplementation implements LoginViewPresenter, LoginModelPresenter {

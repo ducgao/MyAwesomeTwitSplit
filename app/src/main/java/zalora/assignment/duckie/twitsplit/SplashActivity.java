@@ -1,16 +1,13 @@
 package zalora.assignment.duckie.twitsplit;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 
-import com.twitter.sdk.android.core.TwitterAuthToken;
 import com.twitter.sdk.android.core.TwitterCore;
 import com.twitter.sdk.android.core.TwitterSession;
 
 import zalora.assignment.duckie.twitsplit.utility.BaseActivity;
-import zalora.assignment.duckie.twitsplit.utility.SimpleCallback;
+import zalora.assignment.duckie.twitsplit.utility.interfaces.SimpleCallback;
 import zalora.assignment.duckie.twitsplit.utility.TwitterHelper;
 import zalora.assignment.duckie.twitsplit.view.authen.AuthenticationActivity;
 import zalora.assignment.duckie.twitsplit.view.twit_hub.TwitHubActivity;

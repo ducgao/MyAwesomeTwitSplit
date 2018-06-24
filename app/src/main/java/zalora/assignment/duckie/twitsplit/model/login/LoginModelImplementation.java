@@ -2,7 +2,7 @@ package zalora.assignment.duckie.twitsplit.model.login;
 
 import io.realm.Realm;
 import zalora.assignment.duckie.twitsplit.presenter.login.LoginModelPresenter;
-import zalora.assignment.duckie.twitsplit.utility.SimpleCallback;
+import zalora.assignment.duckie.twitsplit.utility.interfaces.SimpleCallback;
 import zalora.assignment.duckie.twitsplit.utility.TwitterHelper;
 
 public class LoginModelImplementation implements LoginModel {

@@ -3,7 +3,7 @@ package zalora.assignment.duckie.twitsplit.presenter.login;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.TwitterSession;
 
-import zalora.assignment.duckie.twitsplit.utility.NavigationDelegate;
+import zalora.assignment.duckie.twitsplit.utility.interfaces.NavigationDelegate;
 
 public interface LoginViewPresenter {
     void moveToDemoPage();

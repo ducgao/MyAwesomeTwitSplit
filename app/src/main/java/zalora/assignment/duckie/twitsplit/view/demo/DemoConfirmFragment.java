@@ -14,7 +14,7 @@ import io.realm.Realm;
 import zalora.assignment.duckie.twitsplit.R;
 import zalora.assignment.duckie.twitsplit.adapter.ViewPagerAdapter;
 import zalora.assignment.duckie.twitsplit.entity.Twit;
-import zalora.assignment.duckie.twitsplit.utility.NavigationDelegate;
+import zalora.assignment.duckie.twitsplit.utility.interfaces.NavigationDelegate;
 import zalora.assignment.duckie.twitsplit.view.twit_hub.TwitHubActivity;
 
 /*
