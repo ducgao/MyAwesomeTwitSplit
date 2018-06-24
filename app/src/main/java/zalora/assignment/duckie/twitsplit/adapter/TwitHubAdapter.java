@@ -10,7 +10,7 @@ import java.util.List;
 
 import zalora.assignment.duckie.twitsplit.R;
 import zalora.assignment.duckie.twitsplit.entity.Twit;
-import zalora.assignment.duckie.twitsplit.viewholder.TwitHubItemViewHolder;
+import zalora.assignment.duckie.twitsplit.adapter.viewholder.TwitHubItemViewHolder;
 
 public class TwitHubAdapter extends RecyclerView.Adapter<TwitHubItemViewHolder> {
 

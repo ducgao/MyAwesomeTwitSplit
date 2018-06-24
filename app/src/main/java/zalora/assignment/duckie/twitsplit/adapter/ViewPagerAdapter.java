@@ -5,9 +5,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 
-import zalora.assignment.duckie.twitsplit.utility.interfaces.NavigationDelegate;
-import zalora.assignment.duckie.twitsplit.view.demo.DemoConfirmFragment;
-import zalora.assignment.duckie.twitsplit.view.login.LoginFragment;
+import zalora.assignment.duckie.twitsplit.core.interfaces.NavigationDelegate;
+import zalora.assignment.duckie.twitsplit.mvp.view.demo.DemoConfirmFragment;
+import zalora.assignment.duckie.twitsplit.mvp.view.login.LoginFragment;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter implements NavigationDelegate {
 

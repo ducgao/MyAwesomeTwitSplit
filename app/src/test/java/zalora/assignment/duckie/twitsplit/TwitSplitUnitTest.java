@@ -5,8 +5,8 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import zalora.assignment.duckie.twitsplit.utility.twitsplit.TwitSplit;
-import zalora.assignment.duckie.twitsplit.utility.twitsplit.TwitSplitException;
+import zalora.assignment.duckie.twitsplit.core.twitsplit.TwitSplit;
+import zalora.assignment.duckie.twitsplit.core.twitsplit.TwitSplitException;
 
 import static org.junit.Assert.*;
 

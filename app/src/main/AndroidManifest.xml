@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.authen.AuthenticationActivity"
+            android:name=".mvp.view.authen.AuthenticationActivity"
             android:theme="@style/AppThemeNoActionBar"
             >
             <intent-filter>
@@ -29,14 +29,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.twit_hub.TwitHubActivity"
+            android:name=".mvp.view.twit_hub.TwitHubActivity"
             android:label="@string/twit_hub_title">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.new_twit.NewTwitActivity"
+            android:name=".mvp.view.new_twit.NewTwitActivity"
             android:label="@string/add_new_twit_title">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
