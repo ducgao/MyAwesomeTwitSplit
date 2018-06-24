@@ -19,7 +19,6 @@ public class TwitSplitUnitTest {
     }
     @Test
     public void testTwitSplit() {
-
         TestCollection testCollection1 = new TestCollection();
         testCollection1.input = "I can't believe Tweeter now supports chunking my messages, so I don't have to do it myself.";
         testCollection1.expectedOutput = new ArrayList<>();
@@ -34,12 +33,12 @@ public class TwitSplitUnitTest {
         TestCollection testCollection3 = new TestCollection();
         testCollection3.input = "Ican't believeTweeternowsupportschunkingmymessages,soIdon'thave to do it myself.";
         testCollection3.expectedOutput = new ArrayList<>();
-        testCollection3.expectedOutput.add("");
+        testCollection3.expectedOutput.add(R.string.add_new_twit_error_input_invalid + "");
 
         TestCollection testCollection4 = new TestCollection();
         testCollection4.input = "          ";
         testCollection4.expectedOutput = new ArrayList<>();
-        testCollection4.expectedOutput.add("");
+        testCollection4.expectedOutput.add(R.string.add_new_twit_error_input_empty + "");
 
         List<TestCollection> testCollections = new ArrayList<>();
         testCollections.add(testCollection1);
@@ -53,7 +52,7 @@ public class TwitSplitUnitTest {
                 result = TwitSplit.init(t.input).build();
                 assertArrayEquals(t.expectedOutput.toArray(), result.toArray());
             } catch (TwitSplitException e) {
-                assertEquals(e.getMessage(), t.expectedOutput.get(0));
+                assertEquals(e.getMessageID() + "", t.expectedOutput.get(0));
             }
         }
     }
