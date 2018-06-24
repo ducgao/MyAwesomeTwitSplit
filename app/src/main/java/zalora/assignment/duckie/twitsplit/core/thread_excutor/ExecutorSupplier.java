@@ -9,7 +9,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class ExecutorSupplier {
-    private final ThreadPoolExecutor forBackgroundTasks;
+    private ThreadPoolExecutor forBackgroundTasks;
 
     private static ExecutorSupplier instance;
 
@@ -24,6 +24,11 @@ public class ExecutorSupplier {
     }
 
     private ExecutorSupplier() {
+        initExecutorForBackgroundTasks();
+
+    }
+
+    private void initExecutorForBackgroundTasks() {
         ThreadFactory backgroundPriorityThreadFactory = new
                 PriorityThreadFactory(Process.THREAD_PRIORITY_BACKGROUND);
 
@@ -35,10 +40,12 @@ public class ExecutorSupplier {
                 new LinkedBlockingQueue<Runnable>(),
                 backgroundPriorityThreadFactory
         );
-
     }
 
     public ThreadPoolExecutor forBackgroundTasks() {
+        if (forBackgroundTasks.isTerminated()) {
+            initExecutorForBackgroundTasks();
+        }
         return forBackgroundTasks;
     }
 }
